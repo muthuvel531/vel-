@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantaloons | Fashion Store</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ff523b;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ff523b
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 18px;
+            display: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* MOBILE NAV */
+        @media(max-width:768px) {
+            nav {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                display: none;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+            }
+
+            nav.show {
+                display: flex
+            }
+              .header-icons {
+                display: block;
+            }
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
+                url("https://images.unsplash.com/photo-1521335629791-ce4aec67dd47") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 48px
+        }
+
+        /* ================= CATEGORY ================= */
+        .category-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .category-slider::-webkit-scrollbar {
+            display: none
+        }
+
+        .category {
+            min-width: 140px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+
+        .category img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        /* ================= PROMO ================= */
+        .promo {
+            max-width: 320px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .promo img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .promo-text {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: #ffffffdd;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .promo-text h2 {
+            color: red
+        }
+
+        /* ================= PRODUCTS ================= */
+        section {
+            padding: 60px 40px;
+            background: rgba(255, 0, 0, .85);
+        }
+
+        section p {
+            text-align: center;
+            font-size: 32px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .products {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+        }
+
+        .products::-webkit-scrollbar {
+            display: none
+        }
+
+        .product {
+            min-width: 260px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background: red
+        }
+
+        /* ================= JUST IN ================= */
+        .justin-section {
+            background: #fff;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+        }
+
+        .left-panel {
+            min-width: 220px;
+        }
+
+        .left-panel h1 {
+            font-size: 72px
+        }
+
+        .product-card {
+            min-width: 220px;
+        }
+
+        .product-img {
+            position: relative;
+            background: #f1f1f1;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ffc107;
+            padding: 6px 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo {
+            max-width: 320px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .promo img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .promo-text {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: #ffffffdd;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .promo-text h2 {
+            color: red
+        }
+
+        /* ================= PRODUCTS ================= */
+        section {
+            padding: 60px 40px;
+            background: rgba(255, 0, 0, .85);
+        }
+
+        section p {
+            text-align: center;
+            font-size: 32px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .products {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+        }
+
+        .products::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product {
+            min-width: 260px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+            overflow: hidden;
+        }
+
+        .product img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background: red
+        }
+
+        /* ================= JUST IN ================= */
+        .justin-section {
+            background: #fff;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            min-width: 220px;
+        }
+
+        .left-panel h1 {
+            font-size: 72px;
+        }
+
+        .product-row {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+        }
+
+        .product-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            min-width: 220px;
+        }
+
+        .product-img {
+            position: relative;
+            background: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ffc107;
+            padding: 6px 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-img .icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO */
+        .hero {
+            height: 70vh;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url("https://images.unsplash.com/photo-1521335629791-ce4aec67dd47") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 48px
+        }
+
+        /* CATEGORY SLIDER */
+        .category-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .category-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            min-width: 140px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .category h3 {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* SECTION */
+        section {
+            padding: 60px 40px;
+            background: rgba(255, 0, 0, 0.85);
+        }
+
+        section p {
+            text-align: center;
+            font-size: 32px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+
+        /* PROMO */
+        .promo {
+            position: relative;
+            max-width: 320px;
+            margin: 30px auto;
+        }
+
+        .promo img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .promo-text {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: #ffffffdd;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .promo-text h2 {
+            color: red
+        }
+
+
+        /* PRODUCTS */
+        .products {
+            display: flex;
+            margin-left: -10px;
+            gap: 25px;
+            overflow-x: auto;
+            width: 100%;
+            padding-bottom: 10px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .products::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product {
+            min-width: 260px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            scroll-snap-align: start;
+            transition: 0.4s;
+        }
+
+        .product:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .product img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .product p {
+            color: #777;
+            margin-bottom: 12px;
+        }
+
+        .product button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .product button:hover {
+            background: red;
+        }
+
+        .produc img {
+            width: 30%;
+            height: 300px;
+            justify-content: center;
+
+            margin-left: 30%;
+            object-fit: cover;
+        }
+
+        .class {
+            padding: 10px;
+            border: none;
+            width: 380px;
+
+            margin-left: 30%;
+            height: 100px;
+            background-color: #ffffffef;
+        }
+
+        /* ARRIVALS */
+        #vel {
+            padding: 30px 15px;
+            background: #fff;
+        }
+
+        #vel h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .arrival-slider {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+        }
+
+        .arrival-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .arrival-card {
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 30px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .photo {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 30px;
+        }
+
+        .photo::-webkit-scrollbar {
+            display: none;
+        }
+
+        .p {
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .po {
+            margin-top: 40px;
+            margin-left: -50px;
+        }
+
+        h5 {
+            font-size: 60px;
+            color: #777;
+        }
+
+        h6 {
+            font-size: 18px;
+        }
+
+        h4 {
+            color: red;
+            margin-top: 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .ph {
+            min-width: 220px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .ph img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .pho {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .pho button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 18px;
+        }
+
+        .pho button:hover {
+            background: red;
+        }
+
+        .justin-section {
+            background: #fff;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            overflow: hidden;
+        }
+
+        /* LEFT PANEL */
+        .left-panel {
+            width: 220px;
+        }
+
+        .left-panel h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .left-panel h1 {
+            font-size: 72px;
+            font-weight: 800;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin: 15px 0;
+        }
+
+        .shop-now {
+            color: #00b3b3;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .arrival-card ,a{
+            text-decoration: none;
+            color:#000;
+        }
+
+        /* PRODUCT SLIDER */
+        .product-row {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .product-row::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .product-row::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .product-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* PRODUCT CARD */
+        .product-card {
+            min-width: 220px;
+        }
+
+        .product-img {
+            position: relative;
+            background: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            display: block;
+        }
+
+        /* JUST IN TAG */
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ffc107;
+            color: #000;
+            font-size: 12px;
+            padding: 6px 8px;
+            font-weight: 600;
+            border-radius: 2px;
+        }
+
+        /* ICONS */
+        .icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* TEXT */
+        .brand {
+            font-weight: 700;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #444;
+            margin: 5px 0;
+        }
+
+        .price {
+            font-weight: 700;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        /* PRODUCTS – HORIZONTAL SCROLL */
+        .products {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .products::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* CARD */
+        .card {
+            min-width: 220px;
+            background: #fff;
+            margin-left: 50px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        /* IMAGE */
+        .card-img {
+            position: relative;
+            background: #f4f4f4;
+            border-radius: 12px;
+            margin-left: -100px;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            display: block;
+        }
+
+        /* JUST IN TAG */
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ffcc33;
+            color: #000;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 6px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            border-radius: 4px;
+        }
+
+        /* ICONS */
+        .icons {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* CONTENT */
+        .card-body {
+            padding: 12px 14px 16px;
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        /* PRICE */
+        .price {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            margin-left: 6px;
+        }
+
+        .off {
+            color: #ff9800;
+            font-size: 13px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        /* MOBILE */
+        @media(max-width:768px) {
+            header {
+                flex-direction: column
+            }
+
+            .hero h2 {
+                font-size: 34px
+            }
+
+            section p {
+                font-size: 26px
+            }
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">REDSTORE</div>
+        <nav id="nav">
+            <a href="index.html">Home</a>
+        <a href="muthu.html">Products</a>
+            <a href="logon.html">Contact</a>
+            <a href="fdb.html">Account</a>
+        </nav>
+        <div class="header-icons">
+            <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+            <i class="fa-solid fa-bars" id="menuBtn"></i>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <h2>New Season Styles</h2>
+            <p>Discover fashion for every occasion</p>
+        </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="category-slider">
+        <div class="category"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+            <h3>Men</h3>
+        </div>
+        <div class="category"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+            <h3>Women</h3>
+        </div>
+        <div class="category"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
+            <h3>Kids</h3>
+        </div>
+        <div class="category"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            <h3>Trendy</h3>
+        </div>
+    </div>
+
+    <!-- PROMO -->
+    <div class="promo">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+        <div class="promo-text">
+            <h4>Denim Must-Have</h4>
+            <p>Up to 50% Off</p>
+            <h2>SHOP NOW</h2>
+        </div>
+    </div>
+
+    <!-- PROMOS -->
+    <div class="promo">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+        <div class="promo-text">
+            <h4>Denim Must-Have</h4>
+            <p>Straight & Baggy Fits Up to 50% Off</p>
+            <h2>SHOP NOW</h2>
+        </div>
+    </div>
+
+    <div class="promo">
+        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        <div class="promo-text">
+            <h4>Trendy Picks</h4>
+            <p>Exclusive Styles Just Arrived</p>
+            <h2>SHOP NOW</h2>
+        </div>
+    </div>
+
+
+
+    <section id="muthu">
+        <p>Trending Products</p>
+
+        <div class="products">
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+                <div class="product-content">
+                    <h3>Men Casual Shirt</h3>
+                    <p>₹1,299</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
+                <div class="product-content">
+                    <h3>Kids Wear Set</h3>
+                    <p>₹999</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                <div class="product-content">
+                    <h3>Trendy Wear</h3>
+                    <p>₹1,499</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+                <div class="product-content">
+                    <h3>Women Stylish Dress</h3>
+                    <p>₹1,799</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+                <div class="product-content">
+                    <h3>Women Stylish Dress</h3>
+                    <p>₹1,799</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                <div class="product-content">
+                    <h3>Trendy Wear</h3>
+                    <p>₹1,499</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+                <div class="product-content">
+                    <h3>Men Casual Shirt</h3>
+                    <p>₹1,299</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="vel">
+        <h2>New Arrivals</h2>
+        <div class="arrival-slider">
+            <div class="arrival-card"><a href="#Men">Men</a></div>
+            <div class="arrival-card"><a href="#Women">Women</a></div>
+            <div class="arrival-card"><a href="#kids">Kids</a></div>
+            <div class="arrival-card"><a href="#Trendy">Trendy</a></div>
+            <div class="arrival-card"><a href="#Men">Men</a></div>
+            <div class="arrival-card"><a href="#Women">Women</a></div>
+            <div class="arrival-card"><a href="#kids">Kids</a></div>
+            <div class="arrival-card"><a href="#Trendy">Trendy</a></div>
+            <div class="arrival-card"><a href="#Men">Men</a></div>
+            <div class="arrival-card"><a href="#Women">Women</a></div>
+            <div class="arrival-card"><a href="#kids">Kids</a></div>
+            <div class="arrival-card"><a href="#Trendy">Trendy</a></div>
+            <div class="arrival-card"><a href="#Men">Men</a></div>
+            <div class="arrival-card"><a href="#Women">Women</a></div>
+            <div class="arrival-card"><a href="#kids">Kids</a></div>
+            <div class="arrival-card"><a href="#Trendy">Trendy</a></div>
+        </div>
+    </div>
+   
+    <div class="justin-section">
+
+      
+
+        <!-- PRODUCTS -->
+        <div class="product-row">
+            <div class="left-panel">
+                <h2>Just In</h2>
+                <h1>764</h1>
+                <p>NEW STYLES JUST LANDED</p>
+                <a href="#" class="shop-now">SHOP NOW ▶</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Teal Checked Casual Shirt</div>
+                <div class="price">₹ 3599</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Chocolate Solid Casual Shirt</div>
+                <div class="price">₹ 3199</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Beige Solid Formal Trouser</div>
+                <div class="price">₹ 4199</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Beige Solid Formal Trouser</div>
+                <div class="price">₹ 4199</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Beige Solid Formal Trouser</div>
+                <div class="price">₹ 4199</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Beige Solid Formal Trouser</div>
+                <div class="price">₹ 4199</div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Beige Solid Formal Trouser</div>
+                <div class="price">₹ 4199</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="tag">Just In</span>
+                    <div class="icons">
+                        <div class="icon">♡</div>
+                        <div class="icon">👜</div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+                </div>
+                <div class="brand">VAN HEUSEN</div>
+                <div class="title">Light Grey Casual Trouser</div>
+                <div class="price">₹ 3699</div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="section-title" id="Men">
+        <h1>New Arrivals</h1>
+        <p>Based On Your Recent Activity</p>
+    </div>
+
+    <div class="products">
+
+        <!-- CARD -->
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">Pink Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">DREAMZ</div>
+                <div class="title">Olive Printed Sleepwear Half Sleeve</div>
+                <div class="price">₹299</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">AJILE</div>
+                <div class="title">Medium Grey Solid Above Knee Shorts</div>
+                <div class="price">₹599</div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="section-title" id="Women">
+        <h1>New </h1>
+        <p>Based On Your Recent Activity</p>
+    </div>
+
+    <div class="products">
+
+        <!-- CARD -->
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">Pink Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">DREAMZ</div>
+                <div class="title">Olive Printed Sleepwear Half Sleeve</div>
+                <div class="price">₹299</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">PEREGRINE</div>
+                <div class="title">White Solid Casual Half Sleeve</div>
+                <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img">
+                <span class="tag">Just In</span>
+                <div class="icons">
+                    <div class="icon">👜</div>
+                    <div class="icon">♡</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+            </div>
+            <div class="card-body">
+                <div class="brand">AJILE</div>
+                <div class="title">Medium Grey Solid Above Knee Shorts</div>
+                <div class="price">₹599</div>
+            </div>
+        </div>
+
+    </div>
+
+<div class="section-title" id="kids">
+    <h1>New Arrivals</h1>
+    <p>Based On Your Recent Activity</p>
+</div>
+
+<div class="products">
+
+    <!-- CARD -->
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">Pink Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">DREAMZ</div>
+            <div class="title">Olive Printed Sleepwear Half Sleeve</div>
+            <div class="price">₹299</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">AJILE</div>
+            <div class="title">Medium Grey Solid Above Knee Shorts</div>
+            <div class="price">₹599</div>
+        </div>
+    </div>
+
+</div>
+<div class="section-title" id="Trendy">
+    <h1>New</h1>
+    <p>Based On Your Recent Activity</p>
+</div>
+
+<div class="products">
+
+    <!-- CARD -->
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">Pink Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">DREAMZ</div>
+            <div class="title">Olive Printed Sleepwear Half Sleeve</div>
+            <div class="price">₹299</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">PEREGRINE</div>
+            <div class="title">White Solid Casual Half Sleeve</div>
+            <div class="price">₹299 <span class="old-price">₹399</span><span class="off">25% OFF</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <span class="tag">Just In</span>
+            <div class="icons">
+                <div class="icon">👜</div>
+                <div class="icon">♡</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246">
+        </div>
+        <div class="card-body">
+            <div class="brand">AJILE</div>
+            <div class="title">Medium Grey Solid Above Knee Shorts</div>
+            <div class="price">₹599</div>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Pantaloons Fashion Store. All Rights Reserved.
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+        menuBtn.onclick = () => nav.classList.toggle("show");
+    </script>
+
+</body>
+
+</html>

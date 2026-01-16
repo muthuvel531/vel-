@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedStore | Products</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* background: #f4f4f4; */
+            background: linear-gradient(135deg, #ff523b, #ff9a8b);
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff523b;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff523b;
+        }
+
+        .header-icons {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                padding: 20px 0;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .header-icons {
+                display: block;
+            }
+        }
+
+        /* ================= CONTAINER ================= */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .top-bar h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        select {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* ================= PRODUCTS GRID ================= */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .12);
+            transition: .35s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .stars {
+            color: #f4c150;
+            margin-bottom: 6px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ff523b;
+        }
+
+        /* LINK RESET */
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* ================= MOBILE ================= */
+        @media(max-width:500px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">REDSTORE</div>
+
+        <nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="muthu.html">Products</a>
+        <a href="logon.html">Contact</a>
+        <a href="fdb.html">Account</a>
+        </nav>
+
+        <div class="header-icons">
+            <i class="fa-solid fa-bars" id="menuBtn"></i>
+        </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="container">
+
+        <div class="top-bar">
+            <h2>All Products</h2>
+            <select id="sort">
+                <option value="default">Sort by price</option>
+                <option value="low">Low to High</option>
+                <option value="high">High to Low</option>
+            </select>
+        </div>
+
+    <div class="products-grid">
+    
+        <div class="product-card">
+            <a href="vel.html?product=tshirt" class="product-link">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+                <div class="product-info">
+                    <h3>Red Printed T-Shirt</h3>
+                    <div class="stars">★★★★☆</div>
+                    <div class="price">$50.00</div>
+                </div>
+            </a>
+        </div>
+    
+        <div class="product-card">
+            <a href="vel.html?product=trackpants" class="product-link">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+                <div class="product-info">
+                    <h3>Gray Trackpants</h3>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">$45.00</div>
+                </div>
+            </a>
+        </div>
+    
+    </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+        menuBtn.onclick = () => nav.classList.toggle("show");
+
+        const sortSelect = document.getElementById("sort");
+        const container = document.getElementById("products");
+        const products = Array.from(document.querySelectorAll(".product-card"));
+
+        sortSelect.addEventListener("change", () => {
+            const sorted = [...products].sort((a, b) => {
+                const priceA = parseFloat(a.querySelector(".price").innerText.replace("$", ""));
+                const priceB = parseFloat(b.querySelector(".price").innerText.replace("$", ""));
+                if (sortSelect.value === "low") return priceA - priceB;
+                if (sortSelect.value === "high") return priceB - priceA;
+                return 0;
+            });
+            container.innerHTML = "";
+            sorted.forEach(p => container.appendChild(p));
+        });
+    </script>
+
+</body>
+
+</html>
+

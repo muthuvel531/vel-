@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart | REDSTORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f2f2f2;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+    .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff523b;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff523b;
+        }
+
+        .header-icons {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                padding: 20px 0;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .header-icons {
+                display: block;
+            }
+        }
+
+        /* ================= CART ================= */
+        .cart-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #ff523b;
+            color: #fff;
+        }
+
+        thead th {
+            padding: 15px;
+            text-align: left;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9
+        }
+
+        tbody td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-info img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .product-info .name {
+            font-weight: 600;
+        }
+
+        .product-info .price {
+            color: #ff523b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .remove {
+            color: #ff523b;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        /* SUMMARY */
+        .summary {
+            margin-top: 25px;
+            text-align: right;
+        }
+
+        .summary div {
+            margin: 8px 0;
+        }
+
+        .checkout-btn {
+            margin-top: 20px;
+            padding: 12px 35px;
+            background: #ff523b;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .checkout-btn:hover {
+            background: #e6452f;
+        }
+
+        /* EMPTY */
+        .empty-cart {
+            text-align: center;
+            padding: 25px;
+            font-size: 18px;
+            color: #777;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            .product-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .checkout-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">REDSTORE</div>
+
+        <nav id="nav">
+            <a href="index.html">Home</a>
+            <a href="muthu.html">Products</a>
+         
+            <a href="logon.html">Contact</a>
+            <a href="fdb.html">Account</a>
+        </nav>
+
+        <div class="header-icons">
+            <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+            <i class="fa-solid fa-bars" id="menuBtn"></i>
+        </div>
+    </div>
+
+    <!-- CART -->
+    <div class="cart-container">
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="summary">
+            <div>Subtotal: <span id="subtotal">$0.00</span></div>
+            <div>Tax (10%): <span id="tax">$0.00</span></div>
+            <div>Total: <span id="total">$0.00</span></div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to checkout →</button>
+        </div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+
+        menuBtn.onclick = () => nav.classList.toggle("show");
+
+        /* CLOSE MENU AFTER CLICK */
+        document.querySelectorAll("nav a").forEach(link => {
+            link.onclick = () => nav.classList.remove("show");
+        });
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const cartTableBody = document.querySelector("#cartTable tbody");
+        const subtotalEl = document.getElementById("subtotal");
+        const taxEl = document.getElementById("tax");
+        const totalEl = document.getElementById("total");
+
+        function renderCart() {
+            cartTableBody.innerHTML = "";
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartTableBody.innerHTML =
+                    `<tr><td colspan="3" class="empty-cart">Your cart is empty.</td></tr>`;
+                subtotalEl.innerText = "$0.00";
+                taxEl.innerText = "$0.00";
+                totalEl.innerText = "$0.00";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const itemSubtotal = item.price * item.qty;
+                subtotal += itemSubtotal;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+        <td>
+            <div class="product-info">
+                <img src="${item.image}" alt="">
+                <div>
+                    <div class="name">${item.name} (${item.size})</div>
+                    <div class="price">$${item.price.toFixed(2)}</div>
+                    <div class="remove" onclick="removeItem(${index})">Remove</div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <input type="number" value="${item.qty}" min="1"
+            onchange="updateQty(${index},this.value)">
+        </td>
+        <td>$${itemSubtotal.toFixed(2)}</td>`;
+                cartTableBody.appendChild(tr);
+            });
+
+            const tax = subtotal * 0.1;
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            taxEl.innerText = `$${tax.toFixed(2)}`;
+            totalEl.innerText = `$${(subtotal + tax).toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function updateQty(index, qty) {
+            cart[index].qty = Math.max(1, parseInt(qty));
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert("Proceeding to checkout...");
+        }
+
+        renderCart();
+    </script>
+
+</body>
+
+</html>

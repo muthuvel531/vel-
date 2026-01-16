@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedStore | Account</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff523b, #ff9a8b);
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            background: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff523b;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ff523b;
+        }
+
+        .header-icons {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                padding: 20px 0;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .header-icons {
+                display: block;
+            }
+        }
+
+        /* ================= CARD ================= */
+        .container {
+            max-width: 950px;
+            margin: 60px auto;
+            background: #fff;
+            display: flex;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+        }
+
+        .left {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, .4),
+                    rgba(0, 0, 0, .4)),
+                url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+        }
+
+        .right {
+            flex: 1;
+            padding: 50px;
+        }
+
+        /* ================= TABS ================= */
+        .tab {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        .tab button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #888;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .tab button.active {
+            color: #ff523b;
+        }
+
+        .tab button.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff523b;
+            border-radius: 3px;
+        }
+
+        /* ================= FORMS ================= */
+        form {
+            display: none;
+            flex-direction: column;
+            gap: 18px;
+            animation: fade .4s ease;
+        }
+
+        form.active {
+            display: flex;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form input {
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: #ff523b;
+        }
+
+        form button {
+            background: linear-gradient(135deg, #ff523b, #ff784e);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 82, 59, .4);
+        }
+
+        /* ================= MOBILE ================= */
+        @media(max-width:768px) {
+            .container {
+                flex-direction: column;
+                margin: 30px 15px;
+            }
+
+            .left {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">REDSTORE</div>
+
+        <nav id="nav">
+            <a href="index.html">Home</a>
+            <a href="muthu.html">Products</a>
+            
+            <a href="logon.html">Contact</a>
+            <a href="fdb.html">Account</a>
+        </nav>
+
+        <div class="header-icons">
+            <i class="fa-solid fa-bars" id="menuBtn"></i>
+        </div>
+    </div>
+
+    <!-- LOGIN / REGISTER CARD -->
+    <div class="container">
+        <div class="left"></div>
+
+        <div class="right">
+            <div class="tab">
+                <button class="tab-btn active" data-target="login">Login</button>
+                <button class="tab-btn" data-target="register">Register</button>
+            </div>
+
+            <form id="login" class="active">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+
+            <form id="register">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+
+        menuBtn.onclick = () => nav.classList.toggle("show");
+
+        const tabs = document.querySelectorAll('.tab-btn');
+        const forms = document.querySelectorAll('form');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                forms.forEach(f => f.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.target).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
